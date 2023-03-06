@@ -11,21 +11,21 @@ on:
 
 jobs:
 
-test:
-    runs-on: ${{ matrix.os }}
-    env:
+  test:
+   runs-on: ${{ matrix.os }}
+   env:
     HOST: localhost
     PORT: 5432
     USER: root
     PASSWORD: root
     DBNAME: root
       
-    strategy:
+   strategy:
       matrix:
         go_version: ['1.19', '1.18', '>=1.19']
         os: ['ubuntu-latest', 'ubuntu-18.04']
         
-    steps:
+   steps:
      - uses: actions/checkout@v3
 
      - name: Set up Go
@@ -43,7 +43,7 @@ test:
      - name: Test
        run: go test -v main_test.go
     
-    Build: 
+  Build: 
      needs: test 
      runs-on: ${{ matrix.os }}
      strategy:
@@ -54,7 +54,7 @@ test:
      - name: Build
        run: go build -v main.go
       
-    docker:
+  docker:
       needs: build
       uses: ./.github/workflows/Docker.yml
       
