@@ -5,10 +5,10 @@ on:
    
 jobs:
 
- docker:
-  runs-on: ubuntu-latest
+  docker:
+    runs-on: ubuntu-latest
 
-  steps:
+    steps:
     - uses: actions/checkout@v3
 
     - name: setup Docker build
@@ -20,8 +20,8 @@ jobs:
       uses: docker/login-action@v2.1.0
       with:
     # Username used to log against the Docker registry
-      username: Gibapedon
+        username: Gibapedon
     # Password or personal access token used to log against the Docker registry
-      password:
+        password: ${{ secrets.PASSWORD_DOCKER_HUB }}
 
      
